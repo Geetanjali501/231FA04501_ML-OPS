@@ -154,3 +154,126 @@ This project demonstrates the use of Feast as a feature store for an employabili
 Feast provides a systematic way to define, manage, retrieve, and serve machine learning features.
 
 The project demonstrates both historical feature retrieval for model training and online feature retrieval for prediction.
+## 15. CLA-1 Implementation
+
+The CLA-1 implementation was carried out using Google Colab and Feast 0.64.0.
+
+### Step 1: Dataset Loading
+
+The balanced employability dataset was loaded using Pandas.
+
+The dataset contains student-related academic, technical, and employability information.
+
+### Step 2: Data Preprocessing
+
+The dataset was converted into Feast-compatible feature columns.
+
+The following types of features were prepared:
+
+- Student ID
+- CGPA
+- Attendance
+- Programming
+- Data Structures
+- Algorithms
+- DBMS
+- Operating Systems
+- Computer Networks
+- OOP
+- Python
+- Java
+- SQL
+- Web Development
+- Git/GitHub
+- Cloud Computing
+- AI/ML
+- Communication
+- Problem Solving
+- Teamwork
+- Internship
+- Projects
+- Certifications
+- Aptitude
+- Average Skill
+- Industry Requirement
+- Skill Gap
+- Gender
+
+Gender was encoded numerically and the employability value was stored as the target label.
+
+### Step 3: Timestamp Creation
+
+Event timestamps and created timestamps were generated for the feature records.
+
+These timestamps allow Feast to manage feature values based on time.
+
+### Step 4: Feature Data Creation
+
+The required feature columns were selected and stored as a separate feature dataset.
+
+The feature data was saved in Parquet format.
+
+### Step 5: Feast Repository Creation
+
+A Feast repository was created at:
+
+`/content/employability_feast`
+
+The repository contains the configuration and data required for the Feast feature store.
+
+### Step 6: Feature Store Configuration
+
+The Feast configuration defines:
+
+- Project name: `employability_project`
+- Registry: `data/registry.db`
+- Provider: Local
+- Offline store: File
+- Online store: SQLite
+
+### Step 7: Entity and Feature Management
+
+`student_id` was used as the entity key.
+
+The student-related attributes were defined as features that can be retrieved through Feast.
+
+### Step 8: Historical Feature Retrieval
+
+Historical feature retrieval was performed to obtain feature values associated with the required entities and timestamps.
+
+These features can be used for machine learning model training.
+
+### Step 9: Materialization
+
+The feature values were materialized into the online store.
+
+This makes the latest feature values available for online retrieval.
+
+### Step 10: Online Feature Retrieval
+
+Online features were successfully retrieved for:
+
+`student_id = 1001`
+
+The retrieved feature values included:
+
+- **CGPA:** 8.14
+- **Industry Requirement:** 89.0
+- **Skill Gap:** 19.47
+- **Average Skill:** 69.53
+
+This confirms that the Feast online feature retrieval process was successfully completed.
+
+## 16. Final Result
+
+The CLA-1 implementation successfully demonstrated the use of Feast as a feature store.
+
+The project successfully performed:
+
+**Dataset → Preprocessing → Feature Creation → Feast Repository → Historical Retrieval → Materialization → Online Feature Retrieval**
+
+The final online retrieval successfully returned feature values for student `1001`.
+
+## 17. Google Colab
+
+The complete implementation, source code, and execution outputs are available in the `MLops_Feast.ipynb` notebook included in this repository.
